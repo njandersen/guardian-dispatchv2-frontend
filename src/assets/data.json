@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "user": "Guardian87",
+    "title": "My favorite exotic weapon in Destiny 2",
+    "content": "The Ace of Spades hand cannon is my go-to weapon in Destiny 2. Its combination of precision, power, and versatility makes it an essential part of any loadout.",
+    "spicyRamenCount": 12,
+    "tags": ["weapons", "exotics", "reviews"]
+  },
+  {
+    "id": 2,
+    "user": "HunterGuru",
+    "title": "Why I love playing as a Hunter in Destiny 2",
+    "content": "As a Hunter, I love the agility and versatility that comes with the class. Whether I'm jumping over obstacles, dodging enemy attacks, or using my trusty bow and arrow, I always feel like a true space ninja.",
+    "spicyRamenCount": 8,
+    "tags": ["classes", "gameplay", "opinions"]
+  },
+  {
+    "id": 3,
+    "user": "TitanForLife",
+    "title": "My top 5 favorite Titan exotics in Destiny 2",
+    "content": "As a Titan main, I've tried out a lot of different exotics over the years. Here are my top 5 favorites: 1. One-Eyed Mask 2. Armamentarium 3. Peregrine Greaves 4. Hallowfire Heart 5. Dunemarchers",
+    "spicyRamenCount": 21,
+    "tags": ["titan", "exotics", "top 5"]
+  },
+  {
+    "id": 4,
+    "user": "NovaBombMaster",
+    "title": "Why the Nova Bomb is the best super in Destiny 2",
+    "content": "The Nova Bomb is the most satisfying super in Destiny 2, hands down. Nothing beats the feeling of wiping out a group of enemies with a well-timed explosion, and the variety of Nova Bomb mods makes it a versatile choice for any situation.",
+    "spicyRamenCount": 15,
+    "tags": ["warlock", "supers", "opinions"]
+  },
+  {
+    "id": 5,
+    "user": "SniperElite",
+    "title": "My tips for sniping in Destiny 2",
+    "content": "Sniping is a tricky but rewarding skill to master in Destiny 2. Here are a few tips to help you become a true sniper elite: 1. Always aim for the head 2. Stay aware of your surroundings 3. Use cover to your advantage 4. Practice, practice, practice!",
+    "spicyRamenCount": 7,
+    "tags": ["snipers", "gameplay", "tips"]
+  }
+]
