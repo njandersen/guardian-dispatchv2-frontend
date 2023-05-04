@@ -13,7 +13,7 @@ export default function CreateComment({ onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col bg-white p-4 rounded-lg"
+      className="flex flex-col bg-white p-4 rounded-lg w-full"
     >
       <textarea
         className="block w-full bg-gray-100 border border-gray-300 rounded-lg py-2 px-4 resize-none focus:outline-none focus:bg-white"

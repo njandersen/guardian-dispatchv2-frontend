@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const Comment = ({ author, content, date }) => {
   return (
-    <div className="bg-white rounded-lg p-4 shadow">
+    <div className="bg-white rounded-lg p-4 shadow w-full">
       <div className="flex items-center mb-2">
         <img
           src="https://via.placeholder.com/50"
