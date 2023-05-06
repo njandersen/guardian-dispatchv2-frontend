@@ -1,36 +1,29 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 const tags = [
-  "React",
-  "Tailwind",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "Web Development",
-  "Node.js",
-  "Python",
-  "Ruby",
-  "PHP",
-  "TypeScript",
-  "Angular",
-  "Vue.js",
-  "Svelte",
+  { id: 1, name: "Guide" },
+  { id: 2, name: "Warlock" },
+  { id: 3, name: "Titan" },
+  { id: 4, name: "Hunter" },
 ];
 
-export default function TagSelector() {
+export default function TagSelector({ onSelection }) {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const handleTagSelect = (event) => {
-    const selectedTag = event.target.value;
-    if (selectedTags.length < 5 && !selectedTags.includes(selectedTag)) {
-      setSelectedTags((prevTags) => [...prevTags, selectedTag]);
+    const selectedTag = JSON.parse(event.target.value);
+    if (selectedTags.length < 5 && !selectedTags.includes(selectedTag.id)) {
+      setSelectedTags((prevTags) => [...prevTags, selectedTag.id]);
+      onSelection([...selectedTags, selectedTag.id]);
     }
   };
 
   const handleTagRemove = (tag) => {
     setSelectedTags((prevTags) => prevTags.filter((t) => t !== tag));
+    onSelection(selectedTags.filter((t) => t !== tag));
   };
 
   return (
@@ -41,7 +34,7 @@ export default function TagSelector() {
             key={tag}
             className="bg-gray-200 rounded-full py-1 px-3 m-1 text-sm font-semibold text-gray-700 flex items-center"
           >
-            {tag}
+            {tags.find((t) => t.id === tag)?.name}
             <button
               onClick={() => handleTagRemove(tag)}
               className="ml-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:shadow-outline"
@@ -58,8 +51,8 @@ export default function TagSelector() {
         >
           <option value="">Select a tag</option>
           {tags.map((tag) => (
-            <option key={tag} value={tag}>
-              {tag}
+            <option key={tag.id} value={JSON.stringify(tag)}>
+              {tag.name}
             </option>
           ))}
         </select>
