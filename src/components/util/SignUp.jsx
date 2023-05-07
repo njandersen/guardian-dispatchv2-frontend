@@ -4,14 +4,42 @@ export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: handle form submission
+
+    // Create an object containing the form data
+    const userData = { name, email, username, password };
+
+    try {
+      // Send a POST request to the backend with the form data
+      const response = await fetch(
+        "http://localhost:3000/guardian-dispatch/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      if (!response.ok) {
+        // Handle any errors returned by the server
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+      }
+
+      // If the request was successful, redirect the user to the dashboard
+      window.location.href = "/UserProfile";
+    } catch (error) {
+      // Display the error message to the user
+      alert(error.message);
+    }
   };
 
   return (
@@ -58,6 +86,21 @@ export default function Signup() {
             className="w-full p-2 border border-gray-400 rounded-md"
             value={username}
             onChange={handleUsernameChange}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="password"
+            className="block text-gray-700 font-bold mb-2"
+          >
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="w-full p-2 border border-gray-400 rounded-md"
+            value={password}
+            onChange={handlePasswordChange}
           />
         </div>
         <div className="flex justify-end">
