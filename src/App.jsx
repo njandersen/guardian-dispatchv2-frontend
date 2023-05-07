@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useEffect, useContext } from "react";
 
 import Feed from "./pages/Feed";
 import NavBar from "./components/UI/NavBar";
@@ -8,18 +7,7 @@ import UserPost from "./components/Users/UserPost";
 import PostForm from "./pages/PostForm";
 import Enter from "./pages/Enter";
 
-import UserContext from "./store/authContext";
-
 function App() {
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-
-  useEffect(() => {
-    const isLoggedInFromLocalStorage = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(isLoggedInFromLocalStorage === "true");
-  }, [setIsLoggedIn]);
-
-  console.log(isLoggedIn);
-
   return (
     <>
       <BrowserRouter>

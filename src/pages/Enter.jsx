@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Login from "../components/util/Login";
-import Signup from "../components/util/SignUp";
+import Login from "../util/Login";
+import Signup from "../util/SignUp";
 
 export default function Enter() {
   const [showLogin, setShowLogin] = useState(true);

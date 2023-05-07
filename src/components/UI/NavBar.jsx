@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setAccessToken,
+  setRefreshToken,
+  setUser,
+} from "../../store/authSlice";
 import axios from "axios";
 
-import UserContext from "../../store/authContext";
-
 export default function NavBar() {
-  //TODO
-  const { user, setUser } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const handleSignOut = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
@@ -23,8 +26,10 @@ export default function NavBar() {
         // clear token from local storage
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
-        // clear user from context
-        setUser(null);
+        // clear user from Redux store
+        dispatch(setUser(null));
+        dispatch(setAccessToken(null));
+        dispatch(setRefreshToken(null));
         // redirect to login page
         window.location.href = "/enter";
       }
