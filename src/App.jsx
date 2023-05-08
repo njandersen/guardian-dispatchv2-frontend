@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Feed from "./pages/Feed";
-import NavBar from "./components/UI/NavBar";
+import NavBar from "./components/UI/NavBar/NavBar";
 import UserProfile from "./pages/UserProfile";
 import UserPost from "./components/Users/UserPost";
 import PostForm from "./pages/PostForm";
