@@ -60,6 +60,8 @@ export default function useLogin() {
       if (response.status === 200) {
         const data = response.data;
         dispatch(setUser(data));
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
         return true;
       } else {
         const data = response.data;
