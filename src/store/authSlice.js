@@ -24,7 +24,7 @@ const authSlice = createSlice({
       if (accessToken && refreshToken) {
         state.accessToken = accessToken;
         state.refreshToken = refreshToken;
-        state.user = storedUser;
+        state.user = JSON.parse(storedUser);
       }
     },
   },

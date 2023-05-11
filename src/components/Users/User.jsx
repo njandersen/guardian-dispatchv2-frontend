@@ -3,7 +3,7 @@ export default function User({ user }) {
   //TODO: Add User component
   return (
     <div>
-      <h1>{user.user}</h1>
+      <h1>{user}</h1>
     </div>
   );
 }
