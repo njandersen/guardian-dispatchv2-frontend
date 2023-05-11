@@ -60,8 +60,10 @@ export default function useLogin() {
       if (response.status === 200) {
         const data = response.data;
         dispatch(setUser(data));
+
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("user", JSON.stringify(data.username));
         return true;
       } else {
         const data = response.data;
@@ -75,5 +77,39 @@ export default function useLogin() {
     }
   }
 
-  return { email, setEmail, password, setPassword, handleLogin };
+  async function handleLogout() {
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/guardian-dispatch/logout",
+        {
+          refreshToken,
+        }
+      );
+
+      console.log("Logout response:", response);
+
+      if (response.status === 204) {
+        // clear token from local storage
+        localStorage.removeItem("accesstoken");
+        localStorage.removeItem("refreshToken");
+        // clear user from Redux store
+        dispatch(setUser(null));
+        dispatch(setAccessToken(null));
+        dispatch(setRefreshToken(null));
+        // redirect to login page
+        window.location.href = "/enter";
+      }
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.error);
+      } else {
+        console.error("Error logging out:", error);
+        alert("Error logging out. Please try again.");
+      }
+    }
+  }
+
+  return { email, setEmail, password, setPassword, handleLogin, handleLogout };
 }

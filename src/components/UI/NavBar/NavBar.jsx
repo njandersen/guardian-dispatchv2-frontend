@@ -1,55 +1,26 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setAccessToken,
-  setRefreshToken,
-  setUser,
-} from "../../../store/authSlice";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+
 import ProfileDropDown from "./ProfileDropDown";
 import MobileDropDown from "./MobileDropDown";
+import useLogin from "../../../hooks/useLogin";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
+  const { handleLogout } = useLogin();
+
   const handleSignOut = async () => {
-    const refreshToken = localStorage.getItem("refreshToken");
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/guardian-dispatch/logout",
-        {
-          refreshToken,
-        }
-      );
-
-      if (response.status === 200) {
-        // clear token from local storage
-        localStorage.removeItem("token");
-        localStorage.removeItem("refreshToken");
-        // clear user from Redux store
-        dispatch(setUser(null));
-        dispatch(setAccessToken(null));
-        dispatch(setRefreshToken(null));
-        // redirect to login page
-        window.location.href = "/enter";
-      }
-    } catch (error) {
-      if (error.response) {
-        alert(error.response.data.error);
-      } else {
-        console.error("Error logging out:", error);
-        alert("Error logging out. Please try again.");
-      }
-    }
+    handleLogout();
   };
+
+  console.log(user);
 
   return (
     <Disclosure as="nav" className="bg-slate-900">
@@ -120,7 +91,7 @@ export default function NavBar() {
                 </button>
 
                 {/* Profile dropdown */}
-                <ProfileDropDown classNames={classNames} />
+                <ProfileDropDown classNames={classNames} user={user} />
               </div>
             </div>
           </div>

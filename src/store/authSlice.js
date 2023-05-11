@@ -20,10 +20,11 @@ const authSlice = createSlice({
     setUserFromLocalStorage: (state) => {
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
+      const storedUser = localStorage.getItem("user");
       if (accessToken && refreshToken) {
         state.accessToken = accessToken;
         state.refreshToken = refreshToken;
-        state.user = { isLoggedIn: true };
+        state.user = storedUser;
       }
     },
   },
