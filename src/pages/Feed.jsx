@@ -18,7 +18,7 @@ export default function Feed() {
 
   return (
     <div className="flex flex-col items-center mt-4">
-      {loading ? <p>Loading...</p> : <PostFeed post={posts} />}
+      {loading ? <p>Loading...</p> : <PostFeed posts={posts} />}
     </div>
   );
 }

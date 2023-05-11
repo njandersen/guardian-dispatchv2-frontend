@@ -6,8 +6,11 @@ export default function PostItem({ post }) {
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
   return (
-    <div className=" border border-black mb-4 rounded-lg shadow-2xl p-2  w-full md:w-2/3 bg-white">
-      <div className="p-2" key={post.id}>
+    <div
+      className=" border border-black mb-4 rounded-lg shadow-2xl p-2  w-full md:w-2/3 bg-white"
+      key={post.id}
+    >
+      <div className="p-2">
         <h3 className="text-yellow-400">
           by <Link to={`/${post.user}`}>@{post.user}</Link>
         </h3>
@@ -24,9 +27,9 @@ export default function PostItem({ post }) {
           🥡 {post.spicyRamenCount} Spicy Ramen
         </span>
       </footer>
-      {post.tags.map((tag) => (
-        <span className="p-2" key={tag}>
-          {tag}
+      {post.tags.map((tag, index) => (
+        <span className="p-2" key={index}>
+          {tag.name}
         </span>
       ))}
     </div>

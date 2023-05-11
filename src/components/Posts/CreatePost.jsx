@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { useSelector } from "react-redux";
 
 import TagSelector from "../Tags.jsx/TagSelector";
 
@@ -10,6 +11,7 @@ export default function CreatePost() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedTags, setSelectedTags] = useState([]);
   const editorRef = useRef(null);
+  const { user } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -41,8 +43,8 @@ export default function CreatePost() {
       )
         .blocks.map((block) => (!block.text.trim() && "\n") || block.text)
         .join("\n");
+      data.username = user;
 
-      data.authorId = 1;
       const response = await fetch(
         "http://localhost:3000/guardian-dispatch/posts",
         {
